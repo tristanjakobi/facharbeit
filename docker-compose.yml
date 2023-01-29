@@ -1,0 +1,18 @@
+services:
+  container1:
+    build: ./container-1/
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT="3000"
+      - HOST="0.0.0.0"
+      - OTHERURL="localhost:3001/getHiddenSuccess"
+      - OWNURL="/getExposedSuccess"
+  container2:
+    build: ./container-2/
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT="3001"
+      - HOST="0.0.0.0"
+      - OWNURL="/getHiddenSuccess"
