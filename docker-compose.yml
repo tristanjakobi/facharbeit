@@ -1,0 +1,22 @@
+services:
+  container1:
+    build: 
+      context: ./container-1/
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - OTHERURL=http://container2:3001/get/
+      - OWNURL=/get
+    links:
+      - container2
+  container2:
+    build: 
+      context: ./container-2/
+      dockerfile: dockerfile
+    environment:
+      - PORT=3001
+      - HOST=0.0.0.0
+      - OWNURL=/get

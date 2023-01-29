@@ -1,0 +1,23 @@
+docker build ./container-1 -t tristan/container-1
+
+docker build ./container-2 -t tristan/container-2
+
+docker run -p 49160:3000 -d tristan/container-1
+
+docker run -p 49161:3001 -d tristan/container-2
+
+
+created custom docker network using 
+
+docker network create --driver bridge app-net
+docker network connect app-net container-1
+docker network connect app-net container-2
+docker network inspect app-net
+
+
+Enable forwarding from Docker containers to the outside world🔗
+
+Configure the Linux kernel to allow IP forwarding.
+sysctl net.ipv4.conf.all.forwarding=1
+
+
